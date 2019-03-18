@@ -5,36 +5,102 @@
 		<title>错题系统</title>
 		<script type="text/javascript" src="./jsLib/jquery-3.3.1.js"></script>
 		<script>
-			var loginPlane;
-			var enterPlane;
+			var registPlane;
 			$(function(){
-				loginPlane = new Array();
-				loginPlane[0] = $("#studentLogin");
-				loginPlane[1] = $("#guardianLogin");
-				loginPlane[2] = $("#teacherLogin");
-				enterPlane = $("#selectEnter");
+				registPlane = new Array();
+				registPlane[0] = $("#studentRegist");
+				registPlane[1] = $("#guardianRegist");
+				registPlane[2] = $("#teacherRegist");
 			});
 			
-			function setEnterPlane(j){
-				if(j==true)enterPlane.show();
-				else enterPlane.hide();
+			function changeRegisterShow(){
+				registPlane.forEach(function(value,i){value.hide();});
+				registPlane[$("input[name='selectRegister']:checked").val()].show();
 			}
 			
-			function setLoginPlane(i,j){
-				if(j==true){
-					setEnterPlane(false);
-					loginPlane[i].show();
-				}else{
-					loginPlane.forEach(function(value,i){value.hide();})
-					setEnterPlane(true);
-				}
+			function studentSubmit(){
+				$.ajax({
+					type:"POST",
+					url:"",
+					data:{
+						userName:$("#studentUserName").val(),
+						password:$("#studentPassword").val(),
+						school:$("#studentSchool").val(),
+						enrollmentYear:$("#studentEnrollmentYear").val(),
+						classNo:$("#studentClass").val(),
+						classTeacher:$("#studentClassTeacher").val()
+						},
+					dataType:"text",
+					success:function(data){
+						
+					}
+				});
+			}
+			
+			function guardianSubmit(){
+				$.ajax({
+					type:"POST",
+					url:"",
+					data:{
+						userName:$("#guardianUserName").val(),
+						password:$("#guardianPassword").val(),
+						},
+					dataType:"text",
+					success:function(data){
+						
+					}
+				});
+			}
+			
+			function teacherSubmit(){
+				$.ajax({
+					type:"POST",
+					url:"",
+					data:{
+						userName:$("#teacherUserName").val(),
+						password:$("#teacherPassword").val(),
+						school:$("#teacherSchool").val(),
+						classNo:$("#teacherClass").val(),
+						teachTime:$("#teacherTime").val()
+						},
+					dataType:"text",
+					success:function(data){
+						
+					}
+				});
 			}
 		</script>
 	</head>
 	<body>
-		<div id="selectEnter">
-			<button >登录</button>
-			<button>注册</button>
+		<div>
+			选择注册类型： 学生<input type="radio" name="selectRegister" onchange="changeRegisterShow()" value="0" checked="checked"/>
+			家长<input type="radio" name="selectRegister" onchange="changeRegisterShow()" value="1"/>
+			教师<input type="radio" name="selectRegister" onchange="changeRegisterShow()" value="2"/>
+		</div>
+		<div id="studentRegist">
+			<br/>
+			用户名<input type="text" id="studentUserName"/><br/>
+			密码<input type="text" id="studentPassword"/><br/>
+			学校<input type="text" id="studentSchool"/><br/>
+			入学年份<input type="text" id="studentEnrollmentYear"/><br/>
+			班级<input type="text" id="studentClass"/></br>
+			班主任姓名<input type="text" id="studentClassTeacher"/></br>
+			<button onclick="studentSubmit()">注册</button>
+		</div>
+		<div id="guardianRegist" style="display:none">
+			<br/>
+			用户名<input type="text" id="guardianUserName"/><br/>
+			密码<input type="text" id="guardianPassword"/><br/>
+			<button onclick="guardianSubmit()">注册</button>
+		</div>
+		<div id="teacherRegist" style="display:none">
+			<br/>
+			用户名<input type="text" id="teacherUserName"/><br/>
+			密码<input type="text" id="teacherPassword"/><br/>
+			学校<input type="text" id="teacherSchool"/><br/>
+			班级<input type="text" id="teacherClass"/></br>
+			执教班级的年份<input type="text" id="teacherTime"/></br>
+			<button onclick="teacherSubmit()">注册</button>
 		</div>
 	</body>
 </html>

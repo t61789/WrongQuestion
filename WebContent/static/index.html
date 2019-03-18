@@ -3,38 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>错题系统</title>
-		<script type="text/javascript" src="./jsLib/jquery-3.3.1.js"></script>
-		<script>
-			var loginPlane;
-			var enterPlane;
-			$(function(){
-				loginPlane = new Array();
-				loginPlane[0] = $("#studentLogin");
-				loginPlane[1] = $("#guardianLogin");
-				loginPlane[2] = $("#teacherLogin");
-				enterPlane = $("#selectEnter");
-			});
-			
-			function setEnterPlane(j){
-				if(j==true)enterPlane.show();
-				else enterPlane.hide();
-			}
-			
-			function setLoginPlane(i,j){
-				if(j==true){
-					setEnterPlane(false);
-					loginPlane[i].show();
-				}else{
-					loginPlane.forEach(function(value,i){value.hide();})
-					setEnterPlane(true);
-				}
-			}
-		</script>
 	</head>
 	<body>
 		<div id="selectEnter">
-			<button >登录</button>
-			<button>注册</button>
+			<button onclick="window.location.href='./login.html'">登录</button>
+			<button onclick="window.location.href='./regist.html'">注册</button>
 		</div>
 	</body>
 </html>
