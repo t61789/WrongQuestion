@@ -1,0 +1,9 @@
+登录
+	用户名为userName
+	密码为password
+	登陆失败response返回"0"
+	成功直接跳转到相应界面
+		学生为studentConsole.html
+		家长为guardianConsole.html
+		教师为teacherConsole.html
+	告诉我servlet地址
